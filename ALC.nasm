@@ -11,21 +11,37 @@ _start:
 
 	; ----------- Arithmetic Instructions----------------
 
-	; register based addition
+	; The basic format of add instruction is 
+	; 		ADD destination, source
+	;		ADC destination, source (add with carry)
+	; The add instruction adds both operands, storing the result in 
+	; the first operand.
+
+	; The below instructions will first set value zero in eax register,
+	; add 0x10 and store the result in eax register.
+	; Note that this is a register based addition. 
 	
 	mov eax, 0x0
 	add eax, 0x10
 
-	; memory based addition
+	; We can also perform a memory based addition. 
+	; In the below instruction, we are adding 0x1111
+	; in the value stored at memory location referenced by var2
 
-	mov eax, 0x0
 	add word [var2], 0x1111
+
+	; If there is an overflow while executing an add instruction, 
+	; the carry flag is set to indicate the programmer.
 
 	clc ; clear carry flag
 	stc ; set carry flag
 	cmc ; complement carry flag
 
-	; subtract
+	; The basic format of instructions related to subtraction is
+	; 		SUB destination, source
+	;		SBB destination, source
+	; the sub instruction subtracts second operand from the first operand
+	; and stores the result the first operand.
 	
 	mov eax, 0x3
 	sub eax, 0x2
